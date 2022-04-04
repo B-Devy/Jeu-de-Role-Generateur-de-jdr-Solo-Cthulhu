@@ -203,8 +203,6 @@ function randomizer() {
 
 }
 
-randomizer();
-
 function creationpnj() {
     prenom.innerHTML = alphabet[alp()];
     nom.innerHTML = alphabet[alp()];
@@ -215,21 +213,14 @@ function creationpnj() {
     ptsvie.innerHTML = personj[index].pv + " PV";
     imp.innerHTML = "Impact: " + personj[index].impact;
 
-    
     var tableau = randomizer();
-    console.log(tableau)
-
-
+    //console.log(tableau)
     principale.innerHTML = tableau[0] + " " + personj[index].principale;
     secondaire.innerHTML = tableau[1] + " " + personj[index].secondaire;
     usuelle1.innerHTML = tableau[2] + " " + personj[index].usuelle1;
     usuelle2.innerHTML = tableau[3] + " " + personj[index].usuelle2;
     faible.innerHTML = tableau[4] + " " + personj[index].faible;
-
-
 }
-
-
 
 bouton4.addEventListener('click', creationpnj);   /*important sans les () */
 
