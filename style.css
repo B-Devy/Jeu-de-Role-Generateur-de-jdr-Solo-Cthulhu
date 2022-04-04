@@ -1,0 +1,150 @@
+@import url('https://fonts.googleapis.com/css2?family=Domine:wght@400;500;600;700&display=swap');
+
+:root {
+    --ombre: #2b2b2b;
+    --clair: #e0e0b8;
+    --clair2: #e0e0b8ec;
+    --vert: #1f4e1f;
+    --gris: rgb(154, 155, 150);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /*overflow: hidden;*/
+    font-family: "Domine", sans-serif;
+    font-size: 30px;
+    color: var(--vert);
+}
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+}
+
+#cadre {
+    border: red 2px dotted;
+    width: 1500px;
+    background-color: transparent;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    
+}
+
+section {
+    border: solid 2px var(--gris);
+    background-image: url(img/Deepone.jpg);
+    background-size: cover;
+    width: 600px;
+    display: flex;
+    flex-direction: column;
+}
+
+#corps {
+    background-color: var(--clair2);
+}
+
+article {
+    border: solid var(--gris) 2px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#grandancien {
+    margin-top: 25px;
+}
+
+button {
+    margin-bottom: 20px;
+    margin-top: 10px;
+    padding: 0 10px 0 10px;
+    color: rgb(92, 92, 92);
+}
+
+div {
+    background-color: rgba(255, 248, 205, 0.589);
+    border: 1px solid var(--gris);
+    width: 250px;
+    margin: 5px;
+    padding-left: 5px;
+}
+
+.duo {
+    /*border: dotted 2px red;*/
+    display: flex;
+    width: 500px;
+}
+
+#fleche {
+    height: 33px;
+    width: 33px;
+    margin: 0;
+    padding: 0;
+    border: none;
+    background-image: url(img/fleche.svg);
+    transform-origin: center;
+    transform: rotate(0deg);
+}
+
+#corps > div {
+    /*border: red solid 2px;*/
+    width: 520px;
+    display: flex;
+    flex-direction: row;
+    margin-top: 30px;
+}
+
+.colonne > div {
+    width: 225px;
+}
+
+#etoile {
+    display: flex;
+    height: 33px;
+}
+
+.star {
+    height: 33px;
+    width: 33px;
+    margin: 0;
+    padding: 0;
+    border: none;
+    background-image: url(img/starr.svg);
+}
+
+.esection {
+    width: 500px;
+}
+
+#cliffhanger {
+    margin-top: 30px;
+}
+
+
+/*-----PNJ-----------*/
+#pnj > div {
+    width: 555px;
+    
+}
+
+.rubrique {
+    width: 535px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+
+
+
+
+
+
+
