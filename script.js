@@ -86,9 +86,12 @@ bouton1.addEventListener('click', function() {
 })
 
 var temps = Math.floor(Math.random() * 4);
-
+var boolean = true;
 bouton2.addEventListener('click', function() {
-    console.log(temps);
+    if (boolean === true) {
+        creation(meteo);
+        boolean = false;
+    }
     creation(omen);      
     cardinal();
     distance();
@@ -108,6 +111,7 @@ bouton2.addEventListener('click', function() {
     }
 })
 
+
 bouton3.addEventListener('click', function() {
     creation(cliffhanger);      
     creation(pointderegle);
@@ -115,6 +119,119 @@ bouton3.addEventListener('click', function() {
 })
 
 /*----------PNJ--------------- */
+var bouton4 = document.getElementById('b4');
+
+var prenom = document.getElementById('prenom');
+var nom = document.getElementById('nom');
+var statistique = document.getElementById('statistique');
+var spe = document.getElementById('spe');
+var ptsvie = document.getElementById('ptsvie');
+var imp = document.getElementById('imp');
+var principale = document.getElementById('principale');
+var secondaire = document.getElementById('secondaire');
+var usuelle1 = document.getElementById('usuelle1');
+var usuelle2 = document.getElementById('usuelle2');
+var faible = document.getElementById('faible');
+
+const alphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+
+const personj = [
+    {
+        stat: "Faible",
+        caracp: 14,
+        caracm: 10,
+        pv:8,
+        impact:"-2",
+        specialite: "50%",
+        principale: "50%",
+        secondaire: "25%",
+        usuelle1: "25%",
+        usuelle2: "10%",
+        faible: "10%",
+    },
+    {
+        stat: "Ordinaire",
+        caracp: 16,
+        caracm: 12,
+        pv:12,
+        impact:0,
+        specialite: "75%",
+        principale: "50%",
+        secondaire: "50%",
+        usuelle1: "25%",
+        usuelle2: "25%",
+        faible: "10%",
+    },
+    {
+        stat: "Supérieur",
+        caracp: 18,
+        caracm: 14,
+        pv:16,
+        impact:"+2",
+        specialite: "90%",
+        principale: "75%",
+        secondaire: "50%",
+        usuelle1: "50%",
+        usuelle2: "25%",
+        faible: "25%",
+    }
+]
+
+function alp() {
+    return Math.floor(Math.random() * 26)
+};
+
+function definirstat() {
+    return Math.floor(Math.random() * 3)
+};
+
+function randomizer() {
+    var arr = ["Connaiss.", "Savoir-faire", "Sensorielle", "Influence", "Action"];
+    var newArr = [];
+    function tab() {
+        var i = Math.floor(Math.random() * arr.length - 1);
+        var cc = arr.splice(i, 1);
+        newArr.push(cc[0]);
+    }
+    tab();
+    tab();
+    tab();
+    tab();
+    tab();
+    //console.log(newArr);
+    return newArr;
+
+}
+
+randomizer();
+
+function creationpnj() {
+    prenom.innerHTML = alphabet[alp()];
+    nom.innerHTML = alphabet[alp()];
+
+    var index = definirstat();
+    statistique.innerHTML = personj[index].stat;
+    spe.innerHTML = "Profession: " + personj[index].specialite;
+    ptsvie.innerHTML = personj[index].pv + " PV";
+    imp.innerHTML = "Impact: " + personj[index].impact;
+
+    
+    var tableau = randomizer();
+    console.log(tableau)
+
+
+    principale.innerHTML = tableau[0] + " " + personj[index].principale;
+    secondaire.innerHTML = tableau[1] + " " + personj[index].secondaire;
+    usuelle1.innerHTML = tableau[2] + " " + personj[index].usuelle1;
+    usuelle2.innerHTML = tableau[3] + " " + personj[index].usuelle2;
+    faible.innerHTML = tableau[4] + " " + personj[index].faible;
+
+
+}
+
+
+
+bouton4.addEventListener('click', creationpnj);   /*important sans les () */
 
 
 

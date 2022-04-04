@@ -27,7 +27,8 @@ body {
 }
 
 #cadre {
-    border: red 2px dotted;
+    border: none;
+    /*border: red 2px dotted;*/
     width: 1500px;
     background-color: transparent;
     display: flex;
@@ -130,8 +131,13 @@ div {
 
 
 /*-----PNJ-----------*/
+#pnj {
+    align-items: center;
+}
+
 #pnj > div {
     width: 555px;
+    margin-top: 30px;
     
 }
 
