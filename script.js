@@ -198,9 +198,7 @@ function randomizer() {
     tab();
     tab();
     tab();
-    //console.log(newArr);
     return newArr;
-
 }
 
 function creationpnj() {
@@ -214,7 +212,7 @@ function creationpnj() {
     imp.innerHTML = "Impact: " + personj[index].impact;
 
     var tableau = randomizer();
-    //console.log(tableau)
+
     principale.innerHTML = tableau[0] + " " + personj[index].principale;
     secondaire.innerHTML = tableau[1] + " " + personj[index].secondaire;
     usuelle1.innerHTML = tableau[2] + " " + personj[index].usuelle1;
@@ -224,8 +222,27 @@ function creationpnj() {
 
 bouton4.addEventListener('click', creationpnj);   /*important sans les () */
 
+/*-----------MAP----------------*/
+var carre = document.querySelectorAll('#mapgrid > div');
+var token = document.querySelectorAll('.token');
+var map = document.getElementById('map');
 
+map.addEventListener('contextmenu', function (e) {
+    e.preventDefault();
+})
 
+carre.forEach( (e) => {
+    e.addEventListener('click', function() {
+        this.classList.toggle('tokenred');
+        this.classList.toggle('carre');
+    });
+})
 
+carre.forEach( (e) => {
+    e.addEventListener('contextmenu', function() {
+        this.classList.toggle('tokenblue');
+        this.classList.toggle('carre');
+    });
+})
 
 
