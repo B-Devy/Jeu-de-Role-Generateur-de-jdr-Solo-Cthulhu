@@ -229,20 +229,115 @@ var map = document.getElementById('map');
 
 map.addEventListener('contextmenu', function (e) {
     e.preventDefault();
-})
+});
 
 carre.forEach( (e) => {
     e.addEventListener('click', function() {
         this.classList.toggle('tokenred');
         this.classList.toggle('carre');
     });
-})
+});
 
 carre.forEach( (e) => {
     e.addEventListener('contextmenu', function() {
         this.classList.toggle('tokenblue');
         this.classList.toggle('carre');
     });
-})
+});
 
+/*-------------ZOOM MAP------------------------*/
+var bouton5 = document.getElementById('b5');
+var bouton6 = document.getElementById('b6');
+var mapgrid = document.getElementById('mapgrid');
+const phrase = '<div class="carre"></div>\n';
+
+bouton6.addEventListener('click', function() {
+    mapgrid.style.gridTemplateColumns = "1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr";
+    mapgrid.style.gridTemplateRows = "1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr";
+    mapgrid.innerHTML = "";
+    for (var i = 1; i <= 400; i++ ) {
+        mapgrid.innerHTML += phrase;
+
+    }
+});
+
+bouton5.addEventListener('click', function() {
+    mapgrid.style.gridTemplateColumns = "1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr";
+    mapgrid.style.gridTemplateRows = "1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr";
+    mapgrid.innerHTML = "";
+    
+    for (var i = 1; i <= 100; i++ ) {
+
+        mapgrid.innerHTML += phrase;
+
+    }
+});
+
+/*-------------ARMES---------------*/
+const armes = [
+    {
+        nom: "Epée",
+        modif: "-10%",
+        dgt: "1d6+1",
+        portee: "Contact",
+        cad: "",
+        mun: ""
+    },
+    {
+        nom: "Hache de Bûcheron",
+        modif: "0%",
+        dgt: "1d8+2",
+        portee: "Contact",
+        cad: "",
+        mun: ""
+    },
+    {
+        nom: "Petit couteau",
+        modif: "+5%",
+        dgt: "1d4",
+        portee: "Contact",
+        cad: "",
+        mun: ""
+    },
+    {
+        nom: "Batte",
+        modif: "+5%",
+        dgt: "1d8",
+        portee: "Contact",
+        cad: "",
+        mun: ""
+    },
+    {
+        nom: "Revolver 32",
+        modif: "0%",
+        dgt: "1d8",
+        portee: "Courte",
+        cad: "3",
+        mun: "6"
+    }
+]
+
+var liste = document.getElementById('liste');
+
+(function listeur() {
+    for (var x = 0; x < armes.length; x++) {
+        var cc = `<li class="lis">${armes[x]["nom"]}</li>`;
+        liste.innerHTML += cc; 
+        
+        armes[x].addEventListener('click', function() {
+            var dgt = document.getElementById('dgt');
+            dgt.innerHTML = armes[x].dgt;
+        })
+        
+    }
+})();
+
+var categ = document.querySelectorAll('#liste li');
+console.log(categ);
+/*
+categ.forEach((e) => e.addEventListener('click', function() {
+    var dgt = document.getElementById('dgt');
+    dgt.innerHTML = this.dgt;
+}))*/
+//listeur();
 

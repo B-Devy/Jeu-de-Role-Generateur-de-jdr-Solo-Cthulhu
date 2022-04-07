@@ -209,3 +209,47 @@ div {
     border: 3px solid black;
     z-index: 1;
 }
+
+#echelle {
+    width: 520px;
+    padding: 0;
+    background-color: transparent;
+    border:none;
+}
+
+#echelle > div {
+    background-color: transparent;
+    border:none;
+}
+
+/*-----------ARMES--------------*/
+#armo {
+    margin: 0;
+    display: flex;
+    justify-content: space-between;
+    width: auto;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+#namearmo {
+    width: auto;
+    
+}
+
+#armo div {
+    width: 110px;
+}
+
+#liste {
+    
+    list-style: none;
+}
+
+#preliste {
+    /*display: none;*/
+    position: absolute;
+}
+
+
