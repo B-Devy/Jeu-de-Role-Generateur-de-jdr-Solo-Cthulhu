@@ -223,6 +223,10 @@ div {
 }
 
 /*-----------ARMES--------------*/
+#namearmo {
+    width: auto;
+}
+
 #armo {
     margin: 0;
     display: flex;
@@ -230,26 +234,20 @@ div {
     width: auto;
     margin-left: auto;
     margin-right: auto;
-
-}
-
-#namearmo {
-    width: auto;
-    
 }
 
 #armo div {
     width: 110px;
 }
 
+#portee {
+    font-size: 27px;
+}
+
 #liste {
-    
     list-style: none;
 }
 
-#preliste {
-    /*display: none;*/
-    position: absolute;
-}
+
 
 

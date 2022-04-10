@@ -318,26 +318,33 @@ const armes = [
 ]
 
 var liste = document.getElementById('liste');
+var modif = document.getElementById('modif');
+var dgt = document.getElementById('dgt');
+var portee = document.getElementById('portee');
+var cadence = document.getElementById('cadence');
+var munitions = document.getElementById('munitions');
 
-(function listeur() {
-    for (var x = 0; x < armes.length; x++) {
-        var cc = `<li class="lis">${armes[x]["nom"]}</li>`;
-        liste.innerHTML += cc; 
-        
-        armes[x].addEventListener('click', function() {
-            var dgt = document.getElementById('dgt');
-            dgt.innerHTML = armes[x].dgt;
-        })
-        
-    }
-})();
 
-var categ = document.querySelectorAll('#liste li');
-console.log(categ);
-/*
-categ.forEach((e) => e.addEventListener('click', function() {
-    var dgt = document.getElementById('dgt');
-    dgt.innerHTML = this.dgt;
-}))*/
-//listeur();
+liste.addEventListener('change', function() {
+
+    modif.innerHTML = armes[liste.value]["modif"];
+    dgt.innerHTML = armes[liste.value]["dgt"];
+    portee.innerHTML = armes[liste.value]["portee"];
+    cadence.innerHTML = armes[liste.value]["cad"];
+    munitions.innerHTML = armes[liste.value]["mun"];
+
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
 
