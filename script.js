@@ -214,6 +214,8 @@ function creationpnj() {
     usuelle1.innerHTML = tableau[2] + " " + personj[index].usuelle1;
     usuelle2.innerHTML = tableau[3] + " " + personj[index].usuelle2;
     faible.innerHTML = tableau[4] + " " + personj[index].faible;
+
+    weaponizer();
 }
 
 bouton4.addEventListener('click', creationpnj);   /*important sans les () */
@@ -332,6 +334,17 @@ liste.addEventListener('change', function() {
 
 })
 
+function weaponizer() {
+    var num = Math.floor(Math.random() * armes.length);
+    liste.value = num;
+
+    modif.innerHTML = armes[liste.value]["modif"];
+    dgt.innerHTML = armes[liste.value]["dgt"];
+    portee.innerHTML = armes[liste.value]["portee"];
+    cadence.innerHTML = armes[liste.value]["cad"];
+    munitions.innerHTML = armes[liste.value]["mun"];
+}
+
 /*--------------POINTS DE REGLES-------------------*/
 
 const ptsdre = [
@@ -374,16 +387,29 @@ function pdr() {
 livre.addEventListener('click', () => help.classList.toggle('invisible'));
 
 
+/*----------------FICHE DE CREATURES---------------------------*/
 
+var bouton7 = document.getElementById('b7');
+var bestiaire = document.getElementById('bestiaire');
+
+bestiaire.addEventListener('click', function() {
+    bestiaire.classList.toggle('monstre');
+})
+
+const monst = ["Byakhee.jpg", "Chasseur_Spectral.jpg", "Goule.jpg","Insecte_de_Shaggaï.jpg", "Mi-Go.jpg", "Momie.jpg", "Peuple_Serpent.jpg", "Profond.jpg", "Terreur_au_delà.jpg", "Vagabond_Dimensionnel.jpg", "Ver_qui_marche.jpg", "Zombie.jpg"];
+
+bouton7.addEventListener('click', function() {
+    var num = Math.floor(Math.random() * monst.length);
+    bestiaire.style.backgroundImage = "url(img/monstres/" + monst[num] + ")"; 
+})
 
 
 
 
 
 /* idée pour améliorer
-- fiche creatures
-- map qui marche , rechercher async
-- armes se genere aléatoirement avec le pnj
+
+- map qui marche , rechercher async + gesion aléatoire des abri
 - regle de sante à droite avec XP
 
 */

@@ -2,6 +2,7 @@
 
 :root {
     --ombre: #2b2b2b;
+    --ombretransparent: #2b2b2bde;
     --clair: #e0e0b8;
     --clair2: #e0e0b8ec;
     --vert: #1f4e1f;
@@ -227,6 +228,7 @@ div {
 /*-----------ARMES--------------*/
 #namearmo {
     width: auto;
+    display: flex;
 }
 
 #armo {
@@ -244,8 +246,6 @@ div {
 
 #portee {
     font-size: 27px;
-    
-    
 }
 
 #liste {
@@ -267,7 +267,6 @@ div {
 #pointderegle {
     margin: 0;
     padding: 0;
-    
 }
 
 #livre {
@@ -293,7 +292,7 @@ div {
     padding: 30px;
     width: 600px;
     height: 400px;
-    background-color: var(--ombre);
+    background-color: var(--ombretransparent);
     top: 50%;
     left: 50%;
     transform-origin: center;
@@ -301,10 +300,30 @@ div {
     transform: translate(-50%, -50%);
     color: var(--gris);
     font-size: 18px;
-    
 }
 
 .invisible {
     display: none;
 }
+
+/*-----BESTIAIRE-------*/
+#bestiaire {
+    width: 400px;
+    height: 150px;
+    background-image: url(img/monstres/Byakhee.jpg);
+    background-size: cover;
+}
+
+.monstre {
+    position: fixed;
+    z-index: 1;
+    top:50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 900px !important; 
+    height: 600px !important;
+}
+
+
+
 
