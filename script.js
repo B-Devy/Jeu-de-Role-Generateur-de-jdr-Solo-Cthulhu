@@ -34,11 +34,7 @@ const secret = ["secret", "Financier", "Famille", "Professionnel", "Contact", "M
 //FOOTER
 const cliffhanger = ["cliffhanger", "Combat", "Combat", "Enigme",  "Test de Compétence ou Carac", "Conversation", "Transaction(Service Objet)","Transaction(Quete Argent)", "Scène Esthétique", "Mini-Jeu"];
 
-const pointderegle = ["pointderegle", "Test Simple", "Test Opposé", "Adversité", "Exploiter à 100% une compétence", "Attribut", 
-"Attribut vs Attribut", "Attribut + Compétence", "Faire plusieurs choses", "Aide", "Chance", "Complet // moitié // quart", "Se dépêcher", "Urgence", "Prendre temps", "Degré de maitrise", "Test prolongé", "Prêt à tirer", "Les deux sont surpris", "Surpris",
-"Dépourvu", "Ciblé", "A deux armes", "Plusieurs cibles", "Charge", "Coups furieux"];
-
-const recompense = ["recompense", "Objet", "Argent", "Information", "Rumeur", "Allié", "Indice Précieux", "Informations sur l'univers", "Object"];
+const recompense = ["recompense", "Objet", "Argent", "Information", "Rumeur", "Allié", "Indice Précieux", "Informations sur l'univers"];
 
 var bouton1 = document.getElementById('b1');
 var bouton2 = document.getElementById('b2');
@@ -114,7 +110,7 @@ bouton2.addEventListener('click', function() {
 
 bouton3.addEventListener('click', function() {
     creation(cliffhanger);      
-    creation(pointderegle);
+    pdr();
     creation(recompense);
 })
 
@@ -258,6 +254,7 @@ bouton6.addEventListener('click', function() {
     for (var i = 1; i <= 400; i++ ) {
         mapgrid.innerHTML += phrase;
 
+
     }
 });
 
@@ -335,12 +332,61 @@ liste.addEventListener('change', function() {
 
 })
 
+/*--------------POINTS DE REGLES-------------------*/
+
+const ptsdre = [
+    {nom:"Test Simple", text:"Effectué un test au d100 sous la compétence du personnage."}, 
+    {nom:"Test Opposé", text:"Effectué un test de compétence du joueur et un test pour l'ennemi. La meilleur qualité de réussite gagne, sinon la meilleur marge gagne. Il arrive que l'on privilégie le joueur en cas d'égalité.\nExemple d'opposition: \nDiscrétion vs Vigilance, Corps à c vs Corps à c,\n Arme à F vs Athlétisme, Arme bl vs Arme bl,\n Conduite vs Conduite, Baratin vs Perspicacité,\n Ecouter vs Discrétion, Négociation vs Négociation,\n Dissimulation vs TOC, TOC vs Se Cacher,\n Jeu vs Jeu."}, 
+    {nom:"Adversité", text:"Test opposé contre\n Faible: 10% // Modéré: 20%  //  Important: 50%  //  Forte: 75%  //  Intense: 90%"}, 
+    {nom:"Exploiter à 100% une comp.", text:"Exploiter à 100% une compétence demande une réussite Spéciale au moins."}, 
+    {nom:"Attribut", text:"Attribut: identique au test simple."}, 
+    {nom:"Attribut vs Attribut", text:"Identique au test opposé"}, 
+    {nom:"Attribut + Compétence", text:"Attribut et compétence peuvent être associé: \nPersuasion & Puissance, Baratin & Prestance,\n Arme à Feu & Agilité, Corps à corps & Corpulence,\n Langue & Connaissance, Chimie & Intuition."}, 
+    {nom:"Faire plusieurs choses", text:"Faire plusieurs choses: il y a deux manières d'opérer:\n1/ Par test combiné: prendre le jet par palier et tenter d'être en dessous des deux.\n2/ Par test simultané: -10% à l'action principale, -20% à la seconde action."}, 
+    {nom:"Aide", text:"Aide: +10% par personnage (Pour Caractéristique +1 si le perso à moins de 10, +2 s'il à plus de 10."}, 
+    {nom:"Chance", text:"Donner un pourcentage qui se joue au d100."}, 
+    {nom:"Complet // moitié // quart", text:"L'échelle temporelle des compétence:\nLa durée:\nImmédiate: seconde à minute  //  Rapide: minutes à heure  //  Longue: Heures à jour  //  Très Longue: jour à semaine  //  Interminable: semaines à mois.\n Le laps de temps:\nSimple: la durée est réduite au quart  //  Complexe: la durée est réduite de moitié  //  Très complexe: nécessite toute la durée."}, 
+    {nom:"Se dépêcher", text:"Se dépêcher: \n-10% pour réduire le laps de temps de moitié. \n-20% pour réduire le laps de temps au quart."}, 
+    {nom:"Urgence", text:"Situation d'urgence:\nDurée réduite d'un cran: Réussite Spéciale\nDurée réduite de deux crans: Réussite Critique"}, 
+    {nom:"Prendre temps", text:"+20% au test contre une durée augmentée d'un cran"}, 
+    {nom:"Degré de maitrise", text: "Amateur: 25% et + //  Professionnel: 50% et +  //  Expert: 75% et +"}, 
+    {nom:"Test prolongé", text:"Test Prolongée:\nDéfinir durée et laps de temps puis nombre de réussites nécessaires (entre 2 et 5 succès).\nEnsuite, selon les jets:\nRéussite critique: action terminée\nRéussite spéciale: compte pour deux succès\nÉchec: allonge la durée d'une unité\nMaladresse: il faut recommencer depuis le début"}, 
+    {nom:"Prêt à tirer", text:"Initiative +10"}, 
+    {nom:"Les deux sont surpris", text:"Surprise\nPlusieurs cas de figure\n1/ Les deux sont conscients, pas de surprise\n2/ Les deux sont surpris, test opposé de Vigilance, le perdant est surpris.\n3/ Lors d'une embuscade, test opposé de Discrétion vs Vigilance\n\nIl existe deux niveaux de surprise: \n1/ Être surpris: une phase perdue\n2/ Être pris au dépourvu:  round perdu. Réussite spéciale et critique = pas de surprise  //  Réussite normale = seulement surpris"}, 
+    {nom:"Surpris", text:"Surprise\nPlusieurs cas de figure\n1/ Les deux sont conscients, pas de surprise\n2/ Les deux sont surpris, test opposé de Vigilance, le perdant est surpris.\n3/ Lors d'une embuscade, test opposé de Discrétion vs Vigilance\n \nIl existe deux niveaux de surprise: \n1/ Être surpris: une phase perdue\n2/ Être pris au dépourvu:  round perdu. Réussite spéciale et critique = pas de surprise  //  Réussite normale = seulement surpris"}, 
+    {nom:"Dépourvu", text:"Surprise\nPlusieurs cas de figure\n1/ Les deux sont conscients, pas de surprise\n2/ Les deux sont surpris, test opposé de Vigilance, le perdant est surpris.\n3/ Lors d'une embuscade, test opposé de Discrétion vs Vigilance\n\nIl existe deux niveaux de surprise: \n1/ Être surpris: une phase perdue\n2/ Être pris au dépourvu:  round perdu. Réussite spéciale et critique = pas de surprise  //  Réussite normale = seulement surpris"}, 
+    {nom:"Ciblé", text:"Cibler\nTorse: test -10%\nMembre: test -20%\nPoint spécifique: réussite spéciale"}, 
+    {nom:"A deux armes", text:"Pour une action il peut attaquer avec les deux armes -10% au test pour la principale, -20% pour la secondaire"}, 
+    {nom:"Plusieurs cibles", text:"Pas de pénalité à la première cible mais si la deuxième est plus éloignée de 2m au corps à corps et 5m à distance elle subit un malus de -20%"}, 
+    {nom:"Charge", text:"Charge\nDéfense impossible\n Faire au moins 5m de déplacement\nTest +10%\nDégâts +2\n Si attaque réussit: test en opposition Puissance vs Corpulence (voir**)\n\n**  Assaillant remporte le test: cible à terre, avec réussite spéciale, elle perd 1d3 PV\nLe défenseur remporte le test: ne perd pas l'équilibre, réussite spéciale: fait chuter l'assaillant"}, 
+    {nom:"Coups furieux", text:"Dégats maximisés, mais défense et autres actions impossible, il faut juste attaquer"}
+];
+
+var pointderegles = document.getElementById('pointderegle');
+var help = document.getElementById('help');
+
+function pdr() {
+    var num = Math.floor((Math.random() * ptsdre.length - 1));
+    pointderegles.innerHTML = ptsdre[num]["nom"];
+    help.innerText = ptsdre[num]["text"];      /*--- Attention, pas TextContent, car ne prend pas en compte l'espace par \n */
+}
+
+livre.addEventListener('click', () => help.classList.toggle('invisible'));
 
 
 
 
 
 
+
+
+/* idée pour améliorer
+- fiche creatures
+- map qui marche , rechercher async
+- armes se genere aléatoirement avec le pnj
+- regle de sante à droite avec XP
+
+*/
 
 
 

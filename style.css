@@ -6,6 +6,8 @@
     --clair2: #e0e0b8ec;
     --vert: #1f4e1f;
     --gris: rgb(154, 155, 150);
+    --rougatre: rgb(114, 50, 50);
+    --rougatrebis: rgb(204, 57, 57);
 }
 
 * {
@@ -242,12 +244,67 @@ div {
 
 #portee {
     font-size: 27px;
+    
+    
 }
 
 #liste {
     list-style: none;
 }
 
+/*---------POINTS DE REGLES------------*/
+#pdr {
+    width: 500px;
+    padding: 0;
+    margin: 0;
+    height: 37px;
+    display: flex;
+    justify-content: space-between;
+    box-sizing: border-box;
+    background-color: transparent;
+}
 
+#pointderegle {
+    margin: 0;
+    padding: 0;
+    
+}
 
+#livre {
+    border: none;
+    margin: 0;
+    padding: 5px;
+    height: 35px;
+    width: 35px;
+    background-color: var(--rougatre);
+    background-image: url(img/book.png);
+    background-size: cover;
+    max-width: 100%;
+    height: 100%;
+    color: black;
+}
+
+#livre:hover {
+    background-color: var(--rougatrebis);
+}
+
+#help {
+    position: absolute;
+    padding: 30px;
+    width: 600px;
+    height: 400px;
+    background-color: var(--ombre);
+    top: 50%;
+    left: 50%;
+    transform-origin: center;
+    
+    transform: translate(-50%, -50%);
+    color: var(--gris);
+    font-size: 18px;
+    
+}
+
+.invisible {
+    display: none;
+}
 
