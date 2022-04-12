@@ -299,6 +299,14 @@ const armes = [
         mun: ""
     },
     {
+        nom: "Poignard",
+        modif: "+5%",
+        dgt: "1d4+2",
+        portee: "Contact",
+        cad: "",
+        mun: ""
+    },
+    {
         nom: "Batte",
         modif: "+5%",
         dgt: "1d8",
@@ -313,6 +321,54 @@ const armes = [
         portee: "Courte",
         cad: "3",
         mun: "6"
+    },
+    {
+        nom: "Pistolet Auto.38",
+        modif: "0%",
+        dgt: "1d10",
+        portee: "Proche",
+        cad: "2",
+        mun: "6"
+    },
+    {
+        nom: "Revolver 45",
+        modif: "0%",
+        dgt: "1d10+2",
+        portee: "Proche",
+        cad: "1",
+        mun: "6"
+    },
+    {
+        nom: "Carabine cal.30",
+        modif: "+5%",
+        dgt: "2d6",
+        portee: "Loin",
+        cad: "2",
+        mun: "6"
+    },
+    {
+        nom: "Carabine cal.30-06",
+        modif: "+5%",
+        dgt: "2d6+4",
+        portee: "Loin",
+        cad: "1",
+        mun: "5"
+    },
+    {
+        nom: "Fusil cal.20",
+        modif: "+10%",
+        dgt: "2d6",
+        portee: "Proche",
+        cad: "2",
+        mun: "2"
+    },
+    {
+        nom: "Fusil cal.12",
+        modif: "+10%",
+        dgt: "4d6",
+        portee: "Proche",
+        cad: "2",
+        mun: "2"
     }
 ]
 
@@ -486,17 +542,6 @@ const regpassive = [
         nom:"Changer le destin", 
         l1:"-1 Aplomb pour changer la qualité de réussite d'un cran d'un jet du joueur ou du maître",
     },
-
-/*
-    {
-        nom:"", 
-        l1:"",
-        l2:"", 
-        l3:"",
-        l4:"",
-        l5:"",
-    },
-    */
 ]
 
 var touche = document.querySelectorAll('#regpassive div');
@@ -511,32 +556,24 @@ touche.forEach(
         } else if (e.textContent === "Privations") {
             table.innerHTML = "";               
             table.innerHTML += "<tr><td>Faim</td><td>CON/4 (arrondi sup) en jours: OK, puis test d'END tous les jours, si échec -10% aux actions > -20% aux actions > réussite spéciale aux actions</td></tr><tr><td>Se Rationner</td><td>CON/2 (arrondi sup) en jours: OK, puis test d'END tous les jours, si échec -10% aux actions > -20% aux actions > réussite spéciale aux actions</td></tr><tr><td>Soif</td><td>CON en heures sans eau</td></tr><tr><td>Se Rationner</td><td> +20 au test d'END</td></tr><tr><td>Sommeil</td><td>CON en heures sans sommeil, test de VOL ou END toutes les heures sinon Fatigué > Épuisé > Inconscient</td></tr><tr><td>Se Rationner</td><td>4h sommeil / jour = CON x 2 heures sans sommeil, test de VOL et END toutes les heures  sinon Fatigué > Épuisé > Inconscient</td></tr>";
-        }
-        
-        
-        
-        
-        
-        
-        else {
+        } else if (e.textContent === "Evolution") {
+            table.innerHTML = "";               
+            table.innerHTML += "<tr><td>Case cochée</td><td>Cocher des cases après un jet en situation de stress ou décisive. À la fin, test d'XP (test de compétence) si échec: comp +5%, si réussite: comp +1d4%</td></tr><tr><td>Pts d'XP du mj</td><td>3 à 6 pts d'XP par scénario, +5% pour case cochée, +1d4% pour case non-cochée</td></tr><tr><td>Entraînement</td><td>chaque mois, test de VOL si réussit comp au choix +1d4% (malus possible de -10% -20% selon le contexte</td></tr><tr><td>Réussite crit</td><td>Proposé de coché la case et de l’acquérir comme nouvelle compétence</td></tr><tr><td>Augmenter un carac</td><td>3 mois, faire un test de VOL, si réussit +1</td></tr><tr><td>SAN</td><td>Si le scénario est réussit, test d'Intuition ou faire expliquer l'intrigue: si test réussit joueurs regagne ½ SANS perdue au cours de l'aventure. Si échec: regagne 1d10 SAN perdu , limité par ½ SAN perdue au cours de la partie.</td></tr><tr><td>Fin de scénario</td><td>Aplomb +0, +1 ou +2</td></tr>";
+        } else if (e.textContent === "Santé mentale") {
+            table.innerHTML = "";               
+            table.innerHTML += "<tr><td>Perte de SAN</td><td>50% SAN: -10% aux actions sociales // 25% SAN: -20% aux actions sociales // 5pts de SAN: Plus aucun intérêt pour les autres // 0pts de SAN: Fou</td></tr><tr><td>SAN max</td><td>99 - mythe de Cthulhu</td></tr><tr><td>Test de santé</td><td>Crit: 0 perte // spé, norm: perte mineur // échec: perte majeure // Maladresse: perte maximale. Tableau des pertes de SAN p 103</td></tr><tr><td>Perte de SAN</td><td>Bénigne: - de 5pts // Mineure: + de 5pts  et choc psychologique // Majeure: 1/5e de la SAN actuelle en 1h et choc psychologique et trouble</td></tr><tr><td>Choc psychologique</td><td>Perte de SAN en rounds en état de choc psychologique, puis réussir un test de VOL pour en sortir</td></tr><tr><td>Reprendre ses esprits</td><td>Test d'Intuition: si réussit perte de SAN appliquée en niveau de trouble, si échec ½ de la perte en niveau de trouble, faits occulté dans l'esprit de l'investigateur (trouble fonctionne comme sequelle, niveau de trouble fonctionne comme virulence). Tableau des chocs psychologiques p104</td></tr>";
+        } else {
 
-
-
-
-
-
-
-
-        for (let i = 0; i < regpassive.length; i++) {
-            if (e.textContent === regpassive[i]["nom"]) {
-                var objval = Object.values(regpassive[i]);
-                table.innerHTML = "";               
-                table.innerHTML += '<tr><td>'+ objval[0] +'</td><td>'+ objval[1] +'</td></tr>';
-                for (var j = 2; j < objval.length; j++) {
-                    table.innerHTML += '<tr><td></td><td>'+ objval[j] +'</td></tr>';
-                }
-            } 
-        }       
+            for (let i = 0; i < regpassive.length; i++) {
+                if (e.textContent === regpassive[i]["nom"]) {
+                    var objval = Object.values(regpassive[i]);
+                    table.innerHTML = "";               
+                    table.innerHTML += '<tr><td>'+ objval[0] +'</td><td>'+ objval[1] +'</td></tr>';
+                    for (var j = 2; j < objval.length; j++) {
+                        table.innerHTML += '<tr><td></td><td>'+ objval[j] +'</td></tr>';
+                    }
+                } 
+            }       
         }       
     })
 )
@@ -544,10 +581,7 @@ touche.forEach(
 
 
 /* idée pour améliorer
-
 - map qui marche , rechercher async + gesion aléatoire des abri
-- Rajouter des armes
-
 */
 
 
