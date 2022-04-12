@@ -432,11 +432,10 @@ bouton7.addEventListener('click', function() {
 const regpassive = [
     {
         nom:"Blessure majeure", 
-        l1:"Blessure supérieur au seuil: 1/ Inconscience: test de CON 2/ Hémorragie: Pvx10min de vie 3/ Sequelle voir p96",
-        l2:"",
-        l3:"",
-        l4:"",
-        l5:""
+        l1:"Blessure supérieur au seuil:" ,
+        l2: "1/ Inconscience: test de CON" ,
+        l3: "2/ Hémorragie: Pvx10min de vie",
+        l4: "3/ Sequelle voir p96"
     },
     {
         nom:"Mort subite", 
@@ -444,7 +443,10 @@ const regpassive = [
     },
     {
         nom:"Récupération", 
-        l1:"Horreur Lovecraftienne +1PX  //  Investigation occulte +2PX  //  Aventure Pulp +4PV    par semaine, par blessure"
+        l1:"Horreur Lovecraftienne +1PX",
+        l2:"Investigation occulte +2PX", 
+        l3:"Aventure Pulp +4PV",
+        l4:"...par semaine, par blessure"
     },
     {
         nom:"1er Soins", 
@@ -457,10 +459,7 @@ const regpassive = [
 ]
 
 var touche = document.querySelectorAll('#regpassive div');
-var td = document.querySelectorAll('td');
-
-
-
+var table = document.querySelector('table');
 
 touche.forEach(
     (e) => e.addEventListener('click', function() {
@@ -468,17 +467,16 @@ touche.forEach(
         //console.log(regpassive.indexOf(e.textContent))
         for (let i = 0; i < regpassive.length; i++) {
             if (e.textContent === regpassive[i]["nom"]) {
-                console.log("euroka")
-                td[0].innerText = regpassive[i]["nom"];
-                td[1].innerText = regpassive[i]["l1"];
-                td[3].innerText = regpassive[i]["l2"];
-                td[4].innerText = regpassive[i]["l3"];
-                td[5].innerText = regpassive[i]["l4"];
-                td[6].innerText = regpassive[i]["l5"];
-            }
-            
-        }
-        
+                var objval = Object.values(regpassive[i]);
+                table.innerHTML = "";
+                
+                table.innerHTML += '<tr><td>'+ objval[0] +'</td><td>'+ objval[1] +'</td></tr>';
+                for (var j = 2; j < objval.length; j++) {
+
+                    table.innerHTML += '<tr><td></td><td>'+ objval[j] +'</td></tr>';
+                }
+            }            
+        }       
     })
 )
 
