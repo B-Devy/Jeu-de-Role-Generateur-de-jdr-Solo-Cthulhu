@@ -455,7 +455,48 @@ const regpassive = [
         l3:"Ralentir une hémorragie: Réussite norm: +1d6min, réussite spé: +6min, réussite critique: hémorragie stoppée, maladresse -1d6min de vie",
         l4:"Réanimation: réveille de l'inconscience",
         l5:"Apaiser la douleur: Aiguë => Vive => insignifiante"
-    }
+    },
+    {
+        nom:"Médecine", 
+        l1:"Suivi des soins: pour 1h/jours pendant une semaine: Réussite normale: 1D3PV  //  Réussite spé et cri: 2D3PV  //  Maladresse: -1D3PV",
+        l2:"Soins des hémorragies: Réussite norm = hémorragie ok pas d'effort pendant DGT en heures  //  Réussite spéciale = pas de sport pendant DGT en heures  // Critique = guéri", 
+        l3:"Diagnostic: Si réussit confère un bonus au jet de CON du patient: réussite normale: +10%, spéciale et critique +20%",
+        l4:"Opération chirurgicale d'urgence: Réussite normale: malus de séquelle -10%  //   spéciale et critique: pas de séquelle",
+        l5:"Opération chirurgicale complexe: test prolongée autant de succès nécessaire que de points sur la blessure, 30min/PV (peut soigner les pertes de d'APP)",
+    },
+    {
+        nom:"Conditions soins", 
+        l1:"Insalubre: -20%",
+        l2:"Douteux: -10%",
+        l3:"Normal: 0%",
+        l4:"Supérieure: +10%",
+        l5:"Excellentes: +20%",
+    },
+    {
+        nom:"Douleur", 
+        l1:"Les douleurs brusques:",
+        l2:"Douleur vive: prochaine phase perdu, -10% à toutes les actions", 
+        l3:"Douleur aiguë: prochaine phase perdu, -20% à toutes les actions",
+        l4:"Les douleurs lancinantes:",
+        l5:"Douleur sourde: -10% à toutes les actions",
+        l6:"Douleur intense: -20% à toutes les actions",
+        l7:"Les douleurs disparaissent avec un suivi médical"
+    },
+    {
+        nom:"Changer le destin", 
+        l1:"-1 Aplomb pour changer la qualité de réussite d'un cran d'un jet du joueur ou du maître",
+    },
+
+/*
+    {
+        nom:"", 
+        l1:"",
+        l2:"", 
+        l3:"",
+        l4:"",
+        l5:"",
+    },
+    */
 ]
 
 var touche = document.querySelectorAll('#regpassive div');
@@ -463,19 +504,39 @@ var table = document.querySelector('table');
 
 touche.forEach(
     (e) => e.addEventListener('click', function() {
-        //console.log(e.textContent)
-        //console.log(regpassive.indexOf(e.textContent))
+
+        if (e.textContent === "Etat de santé") {
+            table.innerHTML = "";               
+            table.innerHTML += "<tr><td>Etat de santé</td><td></td></tr><tr><td>PV -50%</td><td>Endolori: -10% actions, douleur vive, sprint impossible</td></tr><tr><td>PV à 25%</td><td>Courbatures -20% aux actions, douleur aiguë, course impossible</td></tr><tr><td>PV à 1</td><td>Meurtri, test END ou sombré dans l'inconscience</td></tr><tr><td>PV à 0</td><td>Agonie, CON/5 en minutes, puis, test END ou VOL pour 1d6 minutes</td></tr>";
+        } else if (e.textContent === "Privations") {
+            table.innerHTML = "";               
+            table.innerHTML += "<tr><td>Faim</td><td>CON/4 (arrondi sup) en jours: OK, puis test d'END tous les jours, si échec -10% aux actions > -20% aux actions > réussite spéciale aux actions</td></tr><tr><td>Se Rationner</td><td>CON/2 (arrondi sup) en jours: OK, puis test d'END tous les jours, si échec -10% aux actions > -20% aux actions > réussite spéciale aux actions</td></tr><tr><td>Soif</td><td>CON en heures sans eau</td></tr><tr><td>Se Rationner</td><td> +20 au test d'END</td></tr><tr><td>Sommeil</td><td>CON en heures sans sommeil, test de VOL ou END toutes les heures sinon Fatigué > Épuisé > Inconscient</td></tr><tr><td>Se Rationner</td><td>4h sommeil / jour = CON x 2 heures sans sommeil, test de VOL et END toutes les heures  sinon Fatigué > Épuisé > Inconscient</td></tr>";
+        }
+        
+        
+        
+        
+        
+        
+        else {
+
+
+
+
+
+
+
+
         for (let i = 0; i < regpassive.length; i++) {
             if (e.textContent === regpassive[i]["nom"]) {
                 var objval = Object.values(regpassive[i]);
-                table.innerHTML = "";
-                
+                table.innerHTML = "";               
                 table.innerHTML += '<tr><td>'+ objval[0] +'</td><td>'+ objval[1] +'</td></tr>';
                 for (var j = 2; j < objval.length; j++) {
-
                     table.innerHTML += '<tr><td></td><td>'+ objval[j] +'</td></tr>';
                 }
-            }            
+            } 
+        }       
         }       
     })
 )
