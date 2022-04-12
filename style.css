@@ -324,6 +324,57 @@ div {
     height: 600px !important;
 }
 
+/*-----REGLE PASSIVE-------*/
+#regpassive {
+    margin: 0;
+    padding: 0;
+    border: dotted black 2px;
+    width: 520px;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    z-index: 2;
+}
 
+#regpassive div {
+    width: 150px;
+    font-size: 16px;
+    cursor: pointer;
+    margin: 1px;
+}
 
+#support2 {
+    width: 520px;
+    height: 130px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 0 0 0;
+}
 
+#screen {
+    border: solid 2px var(--gris);
+    width: 500px;
+    height: 110px;
+    background-color: rgb(223, 218, 211) !important;
+    color: var(--ombre);
+    font-size: 14px;
+}
+
+table {
+    border-collapse: collapse;
+    
+}
+
+tr {
+    border: solid 1px var(--ombre);
+    
+}
+
+td {
+    padding: 2px;
+    border: solid 1px var(--ombre);
+    font-size: 10px;
+
+}

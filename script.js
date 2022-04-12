@@ -372,7 +372,32 @@ const ptsdre = [
     {nom:"A deux armes", text:"Pour une action il peut attaquer avec les deux armes -10% au test pour la principale, -20% pour la secondaire"}, 
     {nom:"Plusieurs cibles", text:"Pas de pénalité à la première cible mais si la deuxième est plus éloignée de 2m au corps à corps et 5m à distance elle subit un malus de -20%"}, 
     {nom:"Charge", text:"Charge\nDéfense impossible\n Faire au moins 5m de déplacement\nTest +10%\nDégâts +2\n Si attaque réussit: test en opposition Puissance vs Corpulence (voir**)\n\n**  Assaillant remporte le test: cible à terre, avec réussite spéciale, elle perd 1d3 PV\nLe défenseur remporte le test: ne perd pas l'équilibre, réussite spéciale: fait chuter l'assaillant"}, 
-    {nom:"Coups furieux", text:"Dégats maximisés, mais défense et autres actions impossible, il faut juste attaquer"}
+    {nom:"Coups furieux", text:"Dégats maximisés, mais défense et autres actions impossible, il faut juste attaquer"},
+    {nom:"Esquive Totale", text:"Rester en défense tout le round, +20% au test. Il ne peut pas changer d'intention. A la fin il se retrouve à courte distance de l'ennemi"},
+    {nom:"Armure", text:"Protection reduits d'autant les dégâts, attention au score de « gêne »"},
+    {nom:"Courir", text:"Distance 5m = 2 phase d'action  //  10m (courir) = 1 phase d'action  //  20m (sprinter) = action impossible"},
+    {nom:"Ramper", text:"2m / Round, avec tout les avantages et désavantages du sol"},
+    {nom:"Se Relever", text:"Nécessite une action sauf si test d'Athlétisme réussi"},
+    {nom:"Cible à Terre", text:"-20% au text si l'attaquant tir, +20% au test si l'attaquant frappe en mêlée"},
+    {nom:"Dégainer/Rengainer", text:"Dégainer = 1phase  //  Rengainer = 2 phases"},
+    {nom:"Recharger", text:"Arme automatique et une balle dans un revolver ou un fusil = 1 phase  //  Barillet d'un revolver, carabine balle par balle, arc = 2 phases  //  vieux mousquet ou tromblon, arbalète = 2 rounds"},
+    {nom:"Distraire", text:"Jet quelconque en opposition à volonté. Reu Normale:-10% à prochaine action    Reu spé -20%    Reu cri fait perdre la prochaine action"},
+    {nom:"Arme Improvisée", text:"Voir le tableau de l'écran.   Ressemble à une arme = -10%     Ne ressemble pas à une arme = -20%"},
+    {nom:"Plusieurs Adversaires", text:"Le joueur peut utiliser une phase en action simultanée pour bloquer deux attaques (-10%, -20%) . Au delà, le blocage est impossible, se reporter à l'esquive totale"},
+    {nom:"Assommer", text:"-20% de malus pour ciblage tête, Réussite normale = dégâts minimisés, Réussite spé = dégâts divisé par 2, assommé, Réussite critique = dégâts minimisé, assommé"},
+    {nom:"Empoignade", text:"Test de corps à corps => test d'opposition (gratuit) s'il echoue l'adversaire se libère Strangulation immobilisation projetction désarmemetn torsion"},
+    {nom:"Art Martiaux", text:"Test combiné (sous le corps et sous la compétence d'art martiaux. Coup violent: dgt doublés, coup douloureux: douleur vive(aigue sur spé), manœuvre de lutte: n'a pas à réussir un jet d'opposition pour la placer"},
+    {nom:"Lancer", text:"Utiliser armes blanche, Objet de TAI inférieur ou égale à 3 = portée proche  //  TAI inférieure à FOR/2 = portée courte, test d'athlétisme pour cible précise, impact / 2 pour les dégâts"},
+    {nom:"Cible en Mouvement", text:"-10% pour course  //  -20% pour sprint"},
+    {nom:"Tir à bout portant", text:"Cible située à moins de 2m, utiliser la compétence Corps à Corps"},
+    {nom:"Tir en Aveugle", text:"test d'Ecouter réussi pour parvenir à toucher sur une réussite spéciale, sinon, il faut une réussite critique"},
+    {nom:"Tir Ajusté", text:"Défense impossible, il ne faut pas subir de dommage, +10% pour une phase, +20% pour deux phases"},
+    {nom:"Tir de Barrage", text:"Uniquement avec arme semi-automatique/automatique, soit l'ennemi se met à couvert et subit des -20% à ses attaques, soit il ignore mais subit une attaque +20%."},
+    {nom:"Tir de Couverture", text:"Consiste à protéger un allié. Uniquement avec arme semi-automatique/automatique, soit l'ennemi se met à couvert et subit des -20% à ses attaques, soit il ignore mais subit une attaque +20%."},
+    {nom:"Tir Rapide", text:"Action prolongée (2 phases) défense impossible nbre d'attaque égal à la cadence (! sur la même cible)"},
+    {nom:"Tir Nourri", text:"Uniquement avec arme automatique, attaque sur zone de 5 x 5m , jet d'Athlétisme pour les cibles, réussite normale ½ dégâts, réussite spé: évite"},
+    {nom:"Enrayement d'arme", text:"Nécessite en combat un round et une réussite spéciale avec la compétence. Utiliser une arme jugée « vétuste » entraîne un enrayement sur un simple échec et une destruction sur une maladresse"}
+    //{nom:"", text:""},
 ];
 
 var pointderegles = document.getElementById('pointderegle');
@@ -403,14 +428,66 @@ bouton7.addEventListener('click', function() {
     bestiaire.style.backgroundImage = "url(img/monstres/" + monst[num] + ")"; 
 })
 
+/*----------------REGLES PASSIVES---------------------------*/
+const regpassive = [
+    {
+        nom:"Blessure majeure", 
+        l1:"Blessure supérieur au seuil: 1/ Inconscience: test de CON 2/ Hémorragie: Pvx10min de vie 3/ Sequelle voir p96",
+        l2:"",
+        l3:"",
+        l4:"",
+        l5:""
+    },
+    {
+        nom:"Mort subite", 
+        l1:"Si dégât supérieur à CON"
+    },
+    {
+        nom:"Récupération", 
+        l1:"Horreur Lovecraftienne +1PX  //  Investigation occulte +2PX  //  Aventure Pulp +4PV    par semaine, par blessure"
+    },
+    {
+        nom:"1er Soins", 
+        l1:"Soins de base: désinfection bandage un jet pour chaque blessure, Réussite normale: +1PV  //  Réussite spéciale: +2PV  //  Réussite critique: +1d3+1PV  //  Maladresse: fera perdre 1d3+1",
+        l2:"Diagnostique: Permet de connaître temps qu'il reste à vivre (Hémorragie) et degré d'avancement (maladie, poison)",
+        l3:"Ralentir une hémorragie: Réussite norm: +1d6min, réussite spé: +6min, réussite critique: hémorragie stoppée, maladresse -1d6min de vie",
+        l4:"Réanimation: réveille de l'inconscience",
+        l5:"Apaiser la douleur: Aiguë => Vive => insignifiante"
+    }
+]
 
+var touche = document.querySelectorAll('#regpassive div');
+var td = document.querySelectorAll('td');
+
+
+
+
+touche.forEach(
+    (e) => e.addEventListener('click', function() {
+        //console.log(e.textContent)
+        //console.log(regpassive.indexOf(e.textContent))
+        for (let i = 0; i < regpassive.length; i++) {
+            if (e.textContent === regpassive[i]["nom"]) {
+                console.log("euroka")
+                td[0].innerText = regpassive[i]["nom"];
+                td[1].innerText = regpassive[i]["l1"];
+                td[3].innerText = regpassive[i]["l2"];
+                td[4].innerText = regpassive[i]["l3"];
+                td[5].innerText = regpassive[i]["l4"];
+                td[6].innerText = regpassive[i]["l5"];
+            }
+            
+        }
+        
+    })
+)
 
 
 
 /* idée pour améliorer
 
 - map qui marche , rechercher async + gesion aléatoire des abri
-- regle de sante à droite avec XP
+- Rajouter des armes
 
 */
 
