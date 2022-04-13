@@ -7,6 +7,7 @@
     --clair2: #e0e0b8ec;
     --vert: #1f4e1f;
     --gris: rgb(154, 155, 150);
+    --gristransparent: rgb(154, 155, 150, 0.5);
     --rougatre: rgb(114, 50, 50);
     --rougatrebis: rgb(204, 57, 57);
 }
@@ -15,7 +16,6 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    /*overflow: hidden;*/
     font-family: "Domine", sans-serif;
     font-size: 30px;
     color: var(--vert);
@@ -83,7 +83,6 @@ div {
 }
 
 .duo {
-    /*border: dotted 2px red;*/
     display: flex;
     width: 500px;
 }
@@ -100,7 +99,6 @@ div {
 }
 
 #corps > div {
-    /*border: red solid 2px;*/
     width: 520px;
     display: flex;
     flex-direction: row;
@@ -132,7 +130,6 @@ div {
 #cliffhanger {
     margin-top: 30px;
 }
-
 
 /*-----PNJ-----------*/
 #pnj {
@@ -170,7 +167,9 @@ div {
 }
   
 #b5,
-#b6 {
+#b6,
+#abri,
+#reset {
     margin: 0;
 }
 
@@ -182,7 +181,7 @@ div {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-    opacity: 0.5;
+    background-color: rgba(255, 248, 205, 0.4);;
 }
 
 
@@ -190,16 +189,16 @@ div {
     width: auto; /* pour redimensionner par frame */
     padding: 0;
     margin: 0;
-    z-index: 2;
-    border: 1px solid var(--gris);
-    opacity: 0.5;
+    z-index: 0;
+    border: 1px solid var(--gristransparent);
+    background-color: transparent;
 }
 
 .tokenred {
     width: auto;
     padding: 0;
     margin: 0;
-    
+    opacity: 0.5;
     background-color: rgb(241, 41, 41);
     border-radius: 50%;
     border: 3px solid black;
@@ -211,7 +210,7 @@ div {
     width: auto;
     padding: 0;
     margin: 0;
-    
+    opacity: 0.5;
     background-color: rgb(31, 94, 231);
     border-radius: 50%;
     border: 3px solid black;
@@ -229,6 +228,44 @@ div {
 #echelle > div {
     background-color: transparent;
     border:none;
+}
+
+#panneau {
+    width: 500px;
+    padding: 0;
+    margin: 5px 0 5px 0;
+}
+
+.arbre {
+    background-image: url(img/jetons/arbre.png);
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    border:none;
+    background-color: transparent;
+}
+
+.mur {
+    background-image: url(img/jetons/mur.png);
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    opacity: 1;
+    z-index: 2;
+    border:none;
+    background-color: transparent;
+}
+
+.tas {
+    background-image: url(img/jetons/tas.png);
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    opacity: 1;
+    z-index: 2;
+    border:none;
+    background-color: transparent;
 }
 
 /*-----------ARMES--------------*/
@@ -306,7 +343,6 @@ option {
     top: 50%;
     left: 50%;
     transform-origin: center;
-    
     transform: translate(-50%, -50%);
     color: var(--gris);
     font-size: 18px;
@@ -371,7 +407,6 @@ option {
     background-color: rgb(223, 218, 211) !important;
     color: var(--ombre);
     font-size: 14px;
-
     display: flex;
     justify-content: center;
     align-items: center;
@@ -379,17 +414,14 @@ option {
 
 table {
     border-collapse: collapse;
-    
 }
 
 tr {
     border: solid 1px var(--ombre);
-    
 }
 
 td {
     padding: 2px;
     border: solid 1px var(--ombre);
     font-size: 10px;
-
 }

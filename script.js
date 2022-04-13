@@ -225,24 +225,27 @@ var carre = document.querySelectorAll('#mapgrid > div');
 var token = document.querySelectorAll('.token');
 var map = document.getElementById('map');
 
+
 map.addEventListener('contextmenu', function (e) {
     e.preventDefault();
 });
-function boutonneur() {
-carre.forEach( (e) => {
-    e.addEventListener('click', function() {
-        e.classList.toggle('tokenred');
-        e.classList.toggle('carre');
-    });
-});
 
-carre.forEach( (e) => {
-    e.addEventListener('contextmenu', function() {
-        e.classList.toggle('tokenblue');
-        e.classList.toggle('carre');
+function boutonneur() {
+    carre.forEach( (e) => {
+        e.addEventListener('click', function() {
+            e.classList.toggle('tokenred');
+            e.classList.toggle('carre');
+        });
     });
-});
+
+    carre.forEach( (e) => {
+        e.addEventListener('contextmenu', function() {
+            e.classList.toggle('tokenblue');
+            e.classList.toggle('carre');
+        });
+    });
 }
+
 boutonneur();
 /*-------------ZOOM MAP------------------------*/
 var bouton5 = document.getElementById('b5');
@@ -250,7 +253,7 @@ var bouton6 = document.getElementById('b6');
 var mapgrid = document.getElementById('mapgrid');
 const phrase = '<div class="carre"></div>\n';
 
-bouton6.addEventListener('click', function() {
+function foisdeux() {
     mapgrid.style.gridTemplateColumns = "1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr";
     mapgrid.style.gridTemplateRows = "1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr";
     mapgrid.innerHTML = "";
@@ -259,9 +262,10 @@ bouton6.addEventListener('click', function() {
     }
     carre = document.querySelectorAll('#mapgrid > div');
     boutonneur();
-});
+};
+bouton6.addEventListener('click', foisdeux)
 
-bouton5.addEventListener('click', function() {
+function foisun() {
     mapgrid.style.gridTemplateColumns = "1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr";
     mapgrid.style.gridTemplateRows = "1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr";
     mapgrid.innerHTML = "";
@@ -271,7 +275,34 @@ bouton5.addEventListener('click', function() {
     }
     carre = document.querySelectorAll('#mapgrid > div');
     boutonneur();
-});
+};
+bouton5.addEventListener('click', foisun) 
+
+/*-------------ABRI---------------*/
+
+var abri = document.getElementById('abri');
+var reset = document.getElementById('reset');
+
+function abrizer() {
+    
+    var nombre = Math.floor(Math.random() * 8);
+    const decors = ["arbre", "mur", "tas"];
+    
+    for (var i = 0; i < nombre; i++) {
+        var num1 = Math.floor(Math.random() * carre.length)
+        var deg = Math.floor(Math.random() * 360)
+        var decor = decors[Math.floor(Math.random() * decors.length)]
+        
+        carre[num1].innerHTML = '<div class=' + decor + ' style="transform:rotate(' + deg +'deg)"></div>'
+    }
+}
+
+function reseteur() {
+    foisun();   
+}
+
+abri.addEventListener('click', abrizer);
+reset.addEventListener('click', reseteur)
 
 /*-------------ARMES---------------*/
 const armes = [
@@ -406,16 +437,16 @@ function weaponizer() {
 
 const ptsdre = [
     {nom:"Test Simple", text:"Effectué un test au d100 sous la compétence du personnage."}, 
-    {nom:"Test Opposé", text:"Effectué un test de compétence du joueur et un test pour l'ennemi. La meilleur qualité de réussite gagne, sinon la meilleur marge gagne. Il arrive que l'on privilégie le joueur en cas d'égalité.\nExemple d'opposition: \nDiscrétion vs Vigilance, Corps à c vs Corps à c,\n Arme à F vs Athlétisme, Arme bl vs Arme bl,\n Conduite vs Conduite, Baratin vs Perspicacité,\n Ecouter vs Discrétion, Négociation vs Négociation,\n Dissimulation vs TOC, TOC vs Se Cacher,\n Jeu vs Jeu."}, 
-    {nom:"Adversité", text:"Test opposé contre\n Faible: 10% // Modéré: 20%  //  Important: 50%  //  Forte: 75%  //  Intense: 90%"}, 
-    {nom:"Exploiter à 100% une comp.", text:"Exploiter à 100% une compétence demande une réussite Spéciale au moins."}, 
+    {nom:"Test Opposé", text:"Effectué un test de compétence du joueur et un test pour l'ennemi. La meilleur qualité de réussite gagne, sinon la meilleur marge gagne. Il arrive que l'on privilégie le joueur en cas d'égalité.\n\rExemple d'opposition: \nDiscrétion vs Vigilance, Corps à c vs Corps à c,\n Arme à F vs Athlétisme, Arme bl vs Arme bl,\n Conduite vs Conduite, Baratin vs Perspicacité,\n Ecouter vs Discrétion, Négociation vs Négociation,\n Dissimulation vs TOC, TOC vs Se Cacher,\n Jeu vs Jeu."}, 
+    {nom:"Adversité", text:"Test opposé contre\nFaible: 10%\nModéré: 20%\nImportant: 50%\nForte: 75%\nIntense: 90%"}, 
+    {nom:"Exploiter à 100% une comp.", text:"Exploiter à 100% une compétence demande une réussite Spéciale au plus."}, 
     {nom:"Attribut", text:"Attribut: identique au test simple."}, 
     {nom:"Attribut vs Attribut", text:"Identique au test opposé"}, 
     {nom:"Attribut + Compétence", text:"Attribut et compétence peuvent être associé: \nPersuasion & Puissance, Baratin & Prestance,\n Arme à Feu & Agilité, Corps à corps & Corpulence,\n Langue & Connaissance, Chimie & Intuition."}, 
     {nom:"Faire plusieurs choses", text:"Faire plusieurs choses: il y a deux manières d'opérer:\n1/ Par test combiné: prendre le jet par palier et tenter d'être en dessous des deux.\n2/ Par test simultané: -10% à l'action principale, -20% à la seconde action."}, 
     {nom:"Aide", text:"Aide: +10% par personnage (Pour Caractéristique +1 si le perso à moins de 10, +2 s'il à plus de 10."}, 
     {nom:"Chance", text:"Donner un pourcentage qui se joue au d100."}, 
-    {nom:"Complet // moitié // quart", text:"L'échelle temporelle des compétence:\nLa durée:\nImmédiate: seconde à minute  //  Rapide: minutes à heure  //  Longue: Heures à jour  //  Très Longue: jour à semaine  //  Interminable: semaines à mois.\n Le laps de temps:\nSimple: la durée est réduite au quart  //  Complexe: la durée est réduite de moitié  //  Très complexe: nécessite toute la durée."}, 
+    {nom:"Complet // moitié // quart", text:"L'échelle temporelle des compétence:\nLa durée:\nImmédiate: seconde à minute\nRapide: minutes à heure\nLongue: Heures à jour\nTrès Longue: jour à semaine\nInterminable: semaines à mois.\n Le laps de temps:\nSimple: la durée est réduite au quart\nComplexe: la durée est réduite de moitié\nTrès complexe: nécessite toute la durée."}, 
     {nom:"Se dépêcher", text:"Se dépêcher: \n-10% pour réduire le laps de temps de moitié. \n-20% pour réduire le laps de temps au quart."}, 
     {nom:"Urgence", text:"Situation d'urgence:\nDurée réduite d'un cran: Réussite Spéciale\nDurée réduite de deux crans: Réussite Critique"}, 
     {nom:"Prendre temps", text:"+20% au test contre une durée augmentée d'un cran"}, 
@@ -429,29 +460,29 @@ const ptsdre = [
     {nom:"A deux armes", text:"Pour une action il peut attaquer avec les deux armes -10% au test pour la principale, -20% pour la secondaire"}, 
     {nom:"Plusieurs cibles", text:"Pas de pénalité à la première cible mais si la deuxième est plus éloignée de 2m au corps à corps et 5m à distance elle subit un malus de -20%"}, 
     {nom:"Charge", text:"Charge\nDéfense impossible\n Faire au moins 5m de déplacement\nTest +10%\nDégâts +2\n Si attaque réussit: test en opposition Puissance vs Corpulence (voir**)\n\n**  Assaillant remporte le test: cible à terre, avec réussite spéciale, elle perd 1d3 PV\nLe défenseur remporte le test: ne perd pas l'équilibre, réussite spéciale: fait chuter l'assaillant"}, 
-    {nom:"Coups furieux", text:"Dégats maximisés, mais défense et autres actions impossible, il faut juste attaquer"},
+    {nom:"Coups furieux", text:"Dégats maximisés, mais défense et autres actions impossible, \nil ne faire qu'attaquer"},
     {nom:"Esquive Totale", text:"Rester en défense tout le round, +20% au test. Il ne peut pas changer d'intention. A la fin il se retrouve à courte distance de l'ennemi"},
-    {nom:"Armure", text:"Protection reduits d'autant les dégâts, attention au score de « gêne »"},
-    {nom:"Courir", text:"Distance 5m = 2 phase d'action  //  10m (courir) = 1 phase d'action  //  20m (sprinter) = action impossible"},
+    {nom:"Armure", text:"Protection reduits d'autant les dégâts, \nattention au score de « gêne »"},
+    {nom:"Courir", text:"Distance\n5m = 2 phase d'action\n10m (courir) = 1 phase d'action\n20m (sprinter) = action impossible"},
     {nom:"Ramper", text:"2m / Round, avec tout les avantages et désavantages du sol"},
     {nom:"Se Relever", text:"Nécessite une action sauf si test d'Athlétisme réussi"},
-    {nom:"Cible à Terre", text:"-20% au text si l'attaquant tir, +20% au test si l'attaquant frappe en mêlée"},
-    {nom:"Dégainer/Rengainer", text:"Dégainer = 1phase  //  Rengainer = 2 phases"},
-    {nom:"Recharger", text:"Arme automatique et une balle dans un revolver ou un fusil = 1 phase  //  Barillet d'un revolver, carabine balle par balle, arc = 2 phases  //  vieux mousquet ou tromblon, arbalète = 2 rounds"},
-    {nom:"Distraire", text:"Jet quelconque en opposition à volonté. Reu Normale:-10% à prochaine action    Reu spé -20%    Reu cri fait perdre la prochaine action"},
-    {nom:"Arme Improvisée", text:"Voir le tableau de l'écran.   Ressemble à une arme = -10%     Ne ressemble pas à une arme = -20%"},
-    {nom:"Plusieurs Adversaires", text:"Le joueur peut utiliser une phase en action simultanée pour bloquer deux attaques (-10%, -20%) . Au delà, le blocage est impossible, se reporter à l'esquive totale"},
-    {nom:"Assommer", text:"-20% de malus pour ciblage tête, Réussite normale = dégâts minimisés, Réussite spé = dégâts divisé par 2, assommé, Réussite critique = dégâts minimisé, assommé"},
+    {nom:"Cible à Terre", text:"-20% au text si l'attaquant tir\n+20% au test si l'attaquant frappe en mêlée"},
+    {nom:"Dégainer/Rengainer", text:"Dégainer = 1phase\nRengainer = 2 phases"},
+    {nom:"Recharger", text:"Arme automatique et une balle dans un revolver ou un fusil = 1 phase\nBarillet d'un revolver, carabine balle par balle, arc = 2 phases\nvieux mousquet ou tromblon, arbalète = 2 rounds"},
+    {nom:"Distraire", text:"Jet quelconque en opposition à volonté.\nRéussite Normale:-10% à la prochaine action\n    Réussite spéciale: -20% \nRéussite critique fait perdre la prochaine action"},
+    {nom:"Arme Improvisée", text:"Voir le tableau de l'écran.   \nRessemble à une arme = -10% \nNe ressemble pas à une arme = -20%"},
+    {nom:"Plusieurs Adversaires", text:"Le joueur peut utiliser une phase en action simultanée pour bloquer deux attaques (-10%, -20%).\nAu delà, le blocage est impossible, se reporter à l'esquive totale"},
+    {nom:"Assommer", text:"-20% de malus pour ciblage tête\nRéussite normale = dégâts minimisés\nRéussite spéciale = dégâts divisé par 2, assommé\nRéussite critique = dégâts minimisés, assommé"},
     {nom:"Empoignade", text:"Test de corps à corps => test d'opposition (gratuit) s'il echoue l'adversaire se libère Strangulation immobilisation projetction désarmemetn torsion"},
-    {nom:"Art Martiaux", text:"Test combiné (sous le corps et sous la compétence d'art martiaux. Coup violent: dgt doublés, coup douloureux: douleur vive(aigue sur spé), manœuvre de lutte: n'a pas à réussir un jet d'opposition pour la placer"},
-    {nom:"Lancer", text:"Utiliser armes blanche, Objet de TAI inférieur ou égale à 3 = portée proche  //  TAI inférieure à FOR/2 = portée courte, test d'athlétisme pour cible précise, impact / 2 pour les dégâts"},
-    {nom:"Cible en Mouvement", text:"-10% pour course  //  -20% pour sprint"},
+    {nom:"Art Martiaux", text:"Test combiné (sous le corps et sous la compétence d'art martiaux. \nCoup violent: dgt doublés, \ncoup douloureux: douleur vive(aiguë sur spéciale), \nmanœuvre de lutte: n'a pas à réussir un jet d'opposition pour la placer"},
+    {nom:"Lancer", text:"Utiliser armes blanche, \nObjet de TAI inférieur ou égale à 3 = portée proche\nTAI inférieure à FOR/2 = portée courte,\ntest d'athlétisme pour cible précise. \nPour tous, impact / 2 pour les dégâts"},
+    {nom:"Cible en Mouvement", text:"-10% pour course\n-20% pour sprint"},
     {nom:"Tir à bout portant", text:"Cible située à moins de 2m, utiliser la compétence Corps à Corps"},
-    {nom:"Tir en Aveugle", text:"test d'Ecouter réussi pour parvenir à toucher sur une réussite spéciale, sinon, il faut une réussite critique"},
+    {nom:"Tir en Aveugle", text:"Test d'Ecouter réussi pour parvenir à toucher sur une réussite spéciale, sinon, il faut une réussite critique"},
     {nom:"Tir Ajusté", text:"Défense impossible, il ne faut pas subir de dommage, +10% pour une phase, +20% pour deux phases"},
-    {nom:"Tir de Barrage", text:"Uniquement avec arme semi-automatique/automatique, soit l'ennemi se met à couvert et subit des -20% à ses attaques, soit il ignore mais subit une attaque +20%."},
-    {nom:"Tir de Couverture", text:"Consiste à protéger un allié. Uniquement avec arme semi-automatique/automatique, soit l'ennemi se met à couvert et subit des -20% à ses attaques, soit il ignore mais subit une attaque +20%."},
-    {nom:"Tir Rapide", text:"Action prolongée (2 phases) défense impossible nbre d'attaque égal à la cadence (! sur la même cible)"},
+    {nom:"Tir de Barrage", text:"Uniquement avec arme semi-automatique/automatique, \nsoit l'ennemi se met à couvert et subit des -20% à ses attaques, \nsoit il ignore mais subit une attaque +20%."},
+    {nom:"Tir de Couverture", text:"Consiste à protéger un allié. Uniquement avec arme semi-automatique/automatique, \nsoit l'ennemi se met à couvert et subit des -20% à ses attaques, \nsoit il ignore mais subit une attaque +20%."},
+    {nom:"Tir Rapide", text:"Action prolongée (2 phases), défense impossible, nombre d'attaque égal à la cadence (! sur la même cible)"},
     {nom:"Tir Nourri", text:"Uniquement avec arme automatique, attaque sur zone de 5 x 5m , jet d'Athlétisme pour les cibles, réussite normale ½ dégâts, réussite spé: évite"},
     {nom:"Enrayement d'arme", text:"Nécessite en combat un round et une réussite spéciale avec la compétence. Utiliser une arme jugée « vétuste » entraîne un enrayement sur un simple échec et une destruction sur une maladresse"}
     //{nom:"", text:""},
@@ -578,17 +609,3 @@ touche.forEach(
         }       
     })
 )
-
-
-
-/* idée pour améliorer
-- map qui marche , rechercher async
-- gesion aléatoire des abri
-*/
-
-
-
-
-
-
-
