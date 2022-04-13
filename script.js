@@ -228,21 +228,22 @@ var map = document.getElementById('map');
 map.addEventListener('contextmenu', function (e) {
     e.preventDefault();
 });
-
+function boutonneur() {
 carre.forEach( (e) => {
     e.addEventListener('click', function() {
-        this.classList.toggle('tokenred');
-        this.classList.toggle('carre');
+        e.classList.toggle('tokenred');
+        e.classList.toggle('carre');
     });
 });
 
 carre.forEach( (e) => {
     e.addEventListener('contextmenu', function() {
-        this.classList.toggle('tokenblue');
-        this.classList.toggle('carre');
+        e.classList.toggle('tokenblue');
+        e.classList.toggle('carre');
     });
 });
-
+}
+boutonneur();
 /*-------------ZOOM MAP------------------------*/
 var bouton5 = document.getElementById('b5');
 var bouton6 = document.getElementById('b6');
@@ -255,9 +256,9 @@ bouton6.addEventListener('click', function() {
     mapgrid.innerHTML = "";
     for (var i = 1; i <= 400; i++ ) {
         mapgrid.innerHTML += phrase;
-
-
     }
+    carre = document.querySelectorAll('#mapgrid > div');
+    boutonneur();
 });
 
 bouton5.addEventListener('click', function() {
@@ -266,10 +267,10 @@ bouton5.addEventListener('click', function() {
     mapgrid.innerHTML = "";
     
     for (var i = 1; i <= 100; i++ ) {
-
         mapgrid.innerHTML += phrase;
-
     }
+    carre = document.querySelectorAll('#mapgrid > div');
+    boutonneur();
 });
 
 /*-------------ARMES---------------*/
@@ -581,7 +582,8 @@ touche.forEach(
 
 
 /* idée pour améliorer
-- map qui marche , rechercher async + gesion aléatoire des abri
+- map qui marche , rechercher async
+- gesion aléatoire des abri
 */
 
 

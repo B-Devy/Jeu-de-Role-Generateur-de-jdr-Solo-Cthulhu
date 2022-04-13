@@ -221,6 +221,7 @@ div {
 #echelle {
     width: 520px;
     padding: 0;
+    margin: 0;
     background-color: transparent;
     border:none;
 }
@@ -243,6 +244,10 @@ div {
     width: auto;
     margin-left: auto;
     margin-right: auto;
+}
+
+option {
+    font-size: 16px;
 }
 
 #armo div {
